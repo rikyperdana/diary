@@ -4,6 +4,7 @@ class Cdiary extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		if ($this->session->userdata('userlog') == NULL) {redirect('/cuser/login');}
+		$this->userlog = $this->session->userdata('userlog');
 	} //konstruktor & loader
 
 	//FUNGSI VIEW
@@ -20,23 +21,14 @@ class Cdiary extends CI_Controller {
 		$data['images'] = $this->mdiary->view_images($id);
 		if (!($this->mdiary->cek_publish($id)) and !($this->mdiary->cek_owner($id))) {redirect('/cdiary/daftar');}
 		$this->load->view('vdiary/View', $data);
-
-		$data['comments'] = $this->mdiary->comment_list($id);
-		$this->load->view('vdiary/Comment_list', $data);
-		$data['id'] = $id;
-		$this->load->view('vdiary/Comment_form', $data);
-
+		if ($this->mdiary->cek_publish($id)) {
+			$data['id'] = $id;
+			$this->load->view('vdiary/Comment_form', $data);
+			$data['comments'] = $this->mdiary->comment_list($id);
+			$this->load->view('vdiary/Comment_list', $data);
+		}
 		$this->load->view('tmpl/footer');
 	} //baca 1 diary ditunjuk
-
-	function comment_insert() {
-		$data['id_diary'] = $this->input->post('id_diary');
-		$data['id_comment'] = random_string('alpha', 16);
-		$data['user'] = $this->session->userdata('userlog');
-		$data['comment'] = $this->input->post('comment');
-		$this->mdiary->comment_insert($data);
-		redirect('cdiary/view_diary/'.$data['id_diary']);
-	}
 
 	//FUNGSI CREATE
 	function write_diary() {
@@ -60,7 +52,7 @@ class Cdiary extends CI_Controller {
 		} else {
 			$image['id'] = $diary['id'] = $this->input->post('id');
 		}
-		$diary['owner'] = $this->session->userdata('userlog');
+		$diary['owner'] = $this->userlog;
 		$diary['text'] = $this->encryption->encrypt($this->input->post('text'));
 		$diary['mood'] = $this->input->post('mood');
 		if ($this->input->post('publish') == FALSE) {$diary['publish'] = 0;} else {$diary['publish'] = 1;}
@@ -141,6 +133,17 @@ class Cdiary extends CI_Controller {
 		redirect('/cdiary/form_edit_diary/'.$id);
 	}
 
+	//FUNGSI COMMENT
+	function comment_insert() {
+		$data['id_diary'] = $this->input->post('id_diary');
+		$data['id_comment'] = random_string('alpha', 16);
+		$data['stranger'] = $this->encryption->decrypt($this->mdiary->cek_stranger($this->userlog));
+		$data['comment'] = $this->input->post('comment');
+		$this->mdiary->comment_insert($data);
+		redirect('cdiary/view_diary/'.$data['id_diary']);
+	}
+
+	//FUNGSI AKHIR
 	function logout() {
 		$this->session->sess_destroy();
 		redirect('/cuser/login');

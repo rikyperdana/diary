@@ -30,11 +30,6 @@ class Form_rules {
 				'rules' => 'trim|required|valid_email'
 			),
 			array(
-				'field' => 'stranger',
-				'label' => 'Stranger Name',
-				'rules' => $condition
-			),
-			array(
 				'field' => 'timezone',
 				'label' => 'Timezone',
 				'rules' => 'required'

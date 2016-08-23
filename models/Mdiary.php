@@ -53,6 +53,11 @@ class Mdiary extends CI_Model {
 		}
 	}
 
+	function cek_stranger($username) {
+		$query = $this->db->get_where('users', array('username' => $username))->row_array();
+		return $query['stranger'];
+	}
+
 	function latest_diary() {
 		$this->db->order_by('created', 'DESC');
 		$query = $this->db->get_where('diaries', array('owner' => $this->owner), 1)->row_array();
@@ -136,6 +141,5 @@ class Mdiary extends CI_Model {
 	function comment_insert($data) {
 		$this->db->insert('comments', $data);
 	}
-
 }
 ?>
