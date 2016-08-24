@@ -138,7 +138,7 @@ class Cdiary extends CI_Controller {
 		$data['id_diary'] = $this->input->post('id_diary');
 		$data['id_comment'] = random_string('alpha', 16);
 		$data['stranger'] = $this->encryption->decrypt($this->mdiary->cek_stranger($this->userlog));
-		$data['comment'] = $this->input->post('comment');
+		$data['comment'] = $this->encryption->encrypt($this->input->post('comment'));
 		$this->mdiary->comment_insert($data);
 		redirect('cdiary/view_diary/'.$data['id_diary']);
 	}

@@ -28,11 +28,6 @@ class Form_rules {
 				'field' => 'email',
 				'label' => 'Your Email',
 				'rules' => 'trim|required|valid_email'
-			),
-			array(
-				'field' => 'timezone',
-				'label' => 'Timezone',
-				'rules' => 'required'
 			)
 		);
 		return $config;

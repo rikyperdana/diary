@@ -46,7 +46,7 @@ class Mdiary extends CI_Model {
 		$row_array = $query->row_array();
 		$user = $this->db->get_where('users', array('username' => $this->owner))->row_array();
 		if ($query->num_rows() > 0) {
-			$user_time = unix_to_human(gmt_to_local(now(), $user['timezone']));
+			$user_time = unix_to_human(time());
 			if (substr($row_array['created'], 0, 10) == substr($user_time, 0, 10)) {
 				return TRUE;
 			}

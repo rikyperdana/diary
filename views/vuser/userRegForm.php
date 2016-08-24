@@ -12,9 +12,6 @@ echo '<br />';
 	echo form_label('Your Email', 'email');
 	echo form_input('email', set_value('email'), 'class=form-control');
 echo '<br />';
-	echo form_label('Timezone', 'timezone');
-	echo form_dropdown('timezone', $this->timezone->timezone_list(), 'UP7', 'class=form-control');
-echo '<br />';
 echo form_submit('submit', 'Daftar');
 echo form_close();
 ?>
