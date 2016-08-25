@@ -2,21 +2,42 @@
 
 class Croom extends CI_Controller {
 
-	public function __construct() {
+	function __construct() {
 		parent::__construct();
 		if ($this->session->userdata('userlog') == NULL) {redirect('cuser/login');}
 	}
 
-	public function daftar() {
+	function daftar() {
 		$this->load->view('tmpl/header');
 		$this->load->view('vroom/List');
 		$this->load->view('tmpl/footer');
 	}
 
-	public function beloved_diaries() {
+	function beloved_diaries() {
 		$this->load->view('tmpl/header');
 		$this->load->view('vroom/Beloved_diaries');
 		$this->load->view('tmpl/footer');
+	}
+
+	//FUNGSI COMMENT
+	function comment_insert() {
+		$data['id_diary'] = $this->input->post('id_diary');
+		$data['id_comment'] = random_string('alpha', 16);
+		$data['from_user'] = $this->session->userdata('userlog');
+		$data['comment'] = $this->encryption->encrypt($this->input->post('comment'));
+		$this->mroom->comment_insert($data);
+		redirect('cdiary/view_diary/'.$data['id_diary']);
+	}
+
+	//FUNGSI LOVE
+	function add_diary_love($id_diary) {
+		$this->mroom->add_diary_love($id_diary);
+		redirect('cdiary/view_diary/'.$id_diary);
+	}
+
+	function rmv_diary_love($id_diary) {
+		$this->mroom->rmv_diary_love($id_diary);
+		redirect('cdiary/view_diary/'.$id_diary);
 	}
 }
 ?>

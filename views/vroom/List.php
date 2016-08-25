@@ -17,7 +17,7 @@
 			$decryptedtext = $this->encryption->decrypt($item['text']);
 			$trimmedtext = character_limiter($decryptedtext, 20);
 			$stranger = $this->encryption->decrypt($item['stranger']);
-			$count_love = $this->mdiary->count_love($item['id']);
+			$count_love = $this->mroom->count_love($item['id']);
 			$this->table->add_row($item['created'], $stranger, $trimmedtext, $item['mood'], $count_love, $linkbaca);
 		endforeach;
 		echo $this->table->generate();

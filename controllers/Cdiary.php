@@ -24,7 +24,7 @@ class Cdiary extends CI_Controller {
 		if ($this->mdiary->cek_publish($id)) {
 			$data['id'] = $id;
 			$this->load->view('vdiary/Comment_form', $data);
-			$data['comments'] = $this->mdiary->comment_list($id);
+			$data['comments'] = $this->mroom->comment_list($id);
 			$this->load->view('vdiary/Comment_list', $data);
 		}
 		$this->load->view('tmpl/footer');
@@ -131,27 +131,6 @@ class Cdiary extends CI_Controller {
 		$i = $this->input->post('i');
 		$this->mdiary->hapus_image($id, $i);
 		redirect('/cdiary/form_edit_diary/'.$id);
-	}
-
-	//FUNGSI COMMENT
-	function comment_insert() {
-		$data['id_diary'] = $this->input->post('id_diary');
-		$data['id_comment'] = random_string('alpha', 16);
-		$data['from_user'] = $this->session->userdata('userlog');
-		$data['comment'] = $this->encryption->encrypt($this->input->post('comment'));
-		$this->mdiary->comment_insert($data);
-		redirect('cdiary/view_diary/'.$data['id_diary']);
-	}
-
-	//FUNGSI LOVE
-	function add_diary_love($id_diary) {
-		$this->mdiary->add_diary_love($id_diary);
-		redirect('cdiary/view_diary/'.$id_diary);
-	}
-
-	function rmv_diary_love($id_diary) {
-		$this->mdiary->rmv_diary_love($id_diary);
-		redirect('cdiary/view_diary/'.$id_diary);
 	}
 
 	//FUNGSI AKHIR

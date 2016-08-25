@@ -1,4 +1,4 @@
-<?= form_open('cdiary/comment_insert');?>
+<?= form_open('croom/comment_insert');?>
 
 <?= form_hidden('id_diary', $id);?>
 

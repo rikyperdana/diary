@@ -13,9 +13,9 @@
 		$this->table->set_heading('Date', 'From', 'Text', 'Love', 'Action');
 		foreach ($daftar as $item) :;
 			$text = $this->encryption->decrypt($item['text']);
-			$count_love = $this->mdiary->count_love($item['id']);
+			$count_love = $this->mroom->count_love($item['id']);
 			$stranger = $this->encryption->decrypt($this->mdiary->cek_stranger($item['owner']));
-			$hapus = anchor(site_url('/cdiary/rmv_diary_love/'.$item['id']), 'Unlove', 'class="btn btn-danger"');
+			$hapus = anchor(site_url('/croom/rmv_diary_love/'.$item['id']), 'Unlove', 'class="btn btn-danger"');
 			$this->table->add_row($item['created'], $stranger, $text, $count_love, $hapus);
 		endforeach;
 		echo $this->table->generate();
