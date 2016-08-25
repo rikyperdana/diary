@@ -12,7 +12,6 @@ class Muser extends CI_Model {
 			$data['password'] = $this->encryption->encrypt($this->input->post('password'));
 			$data['email'] = $this->encryption->encrypt($this->input->post('email'));
 			$data['stranger'] = $this->encryption->encrypt(random_string('nozero', '9'));
-			$data['timezone'] = $this->input->post('timezone');
 			$this->db->insert('users', $data); // kalau tidak ada, insert user baru ke db
 			return TRUE;
 		} else {

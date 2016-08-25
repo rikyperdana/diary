@@ -141,5 +141,36 @@ class Mdiary extends CI_Model {
 	function comment_insert($data) {
 		$this->db->insert('comments', $data);
 	}
+
+	function cek_diary_love($id_diary) {
+		$data = array('id_diary' => $id_diary, 'from_user' => $this->owner);
+		$cek = $this->db->get_where('diary_loves', $data)->num_rows();
+		if ($cek > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	function add_diary_love($id_diary) {
+		$data = array('id_diary' => $id_diary, 'from_user' => $this->owner);
+		$cek = $this->db->get_where('diary_loves', $data)->num_rows();
+		if ($cek < 1) {
+			$this->db->insert('diary_loves', $data);
+		}
+	}
+
+	function rmv_diary_love($id_diary) {
+		$data = array('id_diary' => $id_diary, 'from_user' => $this->owner);
+		$cek = $this->db->get_where('diary_loves', $data);
+		if ($cek > 0) {
+			$this->db->delete('diary_loves', $data);
+		}
+	}
+
+	function count_love($id_diary) {
+		return $this->db->get_where('diary_loves', array('id_diary' => $id_diary))->num_rows();
+	}
+
 }
 ?>

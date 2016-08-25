@@ -137,10 +137,21 @@ class Cdiary extends CI_Controller {
 	function comment_insert() {
 		$data['id_diary'] = $this->input->post('id_diary');
 		$data['id_comment'] = random_string('alpha', 16);
-		$data['stranger'] = $this->encryption->decrypt($this->mdiary->cek_stranger($this->userlog));
+		$data['from_user'] = $this->session->userdata('userlog');
 		$data['comment'] = $this->encryption->encrypt($this->input->post('comment'));
 		$this->mdiary->comment_insert($data);
 		redirect('cdiary/view_diary/'.$data['id_diary']);
+	}
+
+	//FUNGSI LOVE
+	function add_diary_love($id_diary) {
+		$this->mdiary->add_diary_love($id_diary);
+		redirect('cdiary/view_diary/'.$id_diary);
+	}
+
+	function rmv_diary_love($id_diary) {
+		$this->mdiary->rmv_diary_love($id_diary);
+		redirect('cdiary/view_diary/'.$id_diary);
 	}
 
 	//FUNGSI AKHIR

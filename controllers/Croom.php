@@ -6,10 +6,17 @@ class Croom extends CI_Controller {
 		parent::__construct();
 		if ($this->session->userdata('userlog') == NULL) {redirect('cuser/login');}
 	}
+
 	public function daftar() {
 		$this->load->view('tmpl/header');
 		$this->load->view('vroom/List');
 		$this->load->view('tmpl/footer');
-		}
 	}
+
+	public function beloved_diaries() {
+		$this->load->view('tmpl/header');
+		$this->load->view('vroom/Beloved_diaries');
+		$this->load->view('tmpl/footer');
+	}
+}
 ?>

@@ -2,7 +2,8 @@
 
 foreach ($comments as $comment) {
 	$decrypted = $this->encryption->decrypt($comment['comment']);
-	echo 'Stranger '.$comment['stranger'].' posted:<br />'.$decrypted.'<br />'.$comment['created'].'<br />';
+	$stranger = $this->encryption->decrypt($this->mdiary->cek_stranger($comment['from_user']));
+	echo 'Stranger '.$stranger.' posted:<br />'.$decrypted.'<br />'.$comment['created'].'<br />';
 	echo '<br /><br />';
 }
 
