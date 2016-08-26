@@ -4,7 +4,7 @@ class Cgallery extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if ($this->session->userdata('userlog') == NULL) {
+		if ($this->session->userdata('id_user') == NULL) {
 			redirect('/cuser/login');
 		}
 	}

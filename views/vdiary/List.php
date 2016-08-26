@@ -15,13 +15,13 @@
 		$iconbaca = '<span class="glyphicon glyphicon-zoom-in"></span>';
 		$iconedit = '<span class="glyphicon glyphicon-pencil"></span>';
 		$iconhapus = '<span class="glyphicon glyphicon-trash"></span>';
-		$linkbaca = anchor(('cdiary/view_diary/'.$item['id']), $iconbaca, 'Read');
-		$linkedit = anchor(('cdiary/form_edit_diary/'.$item['id']), $iconedit, 'Edit');
-		$linkhapus = anchor(('cdiary/konfirmasi_hapus/'.$item['id'].'/0'), $iconhapus, 'Delete');
+		$linkbaca = anchor(('cdiary/view_diary/'.$item['id_diary']), $iconbaca, 'Read');
+		$linkedit = anchor(('cdiary/form_edit_diary/'.$item['id_diary']), $iconedit, 'Edit');
+		$linkhapus = anchor(('cdiary/konfirmasi_hapus/'.$item['id_diary'].'/0'), $iconhapus, 'Delete');
 		$action = $linkbaca.'|'.$linkedit.'|'.$linkhapus;
 		$decryptedtext = $this->encryption->decrypt($item['text']);
 		$trimmedtext = character_limiter($decryptedtext, 20);
-		$count_pics = $this->mdiary->count_pics($item['id']);
+		$count_pics = $this->mdiary->count_pics($item['id_diary']);
 		$this->table->add_row($item['created'], $trimmedtext, $item['mood'], $count_pics, $action);
 	endforeach;
 	echo $this->table->generate();

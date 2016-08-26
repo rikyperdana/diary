@@ -4,7 +4,7 @@ class Croom extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if ($this->session->userdata('userlog') == NULL) {redirect('cuser/login');}
+		if ($this->session->userdata('id_user') == NULL) {redirect('cuser/login');}
 	}
 
 	function daftar() {
@@ -23,7 +23,7 @@ class Croom extends CI_Controller {
 	function comment_insert() {
 		$data['id_diary'] = $this->input->post('id_diary');
 		$data['id_comment'] = random_string('alpha', 16);
-		$data['from_user'] = $this->session->userdata('userlog');
+		$data['id_user'] = $this->session->userdata('id_user');
 		$data['comment'] = $this->encryption->encrypt($this->input->post('comment'));
 		$this->mroom->comment_insert($data);
 		redirect('cdiary/view_diary/'.$data['id_diary']);

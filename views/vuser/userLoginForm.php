@@ -44,19 +44,7 @@
 			<p>How much storage would you want? It's Unlimited.</p>
 			<p>
 
-<?php
-
-		$query = $this->db->get_where('diaries', array('owner' => 'rikyperdana'));
-		$row_array = $query->row_array();
-		$user = $this->db->get_where('users', array('username' => 'rikyperdana'))->row_array();
-			$user_time = unix_to_human(time());
-			echo 'user\'s last diary ';
-			echo substr($row_array['created'], 0, 10);
-			echo '<br />';
-			echo 'user server time ';
-			echo substr($user_time, 0, 10);
-			echo '<br />';
-?>
+<?php ?>
 
 
 </p>

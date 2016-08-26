@@ -1,6 +1,6 @@
 <?= form_open('croom/comment_insert');?>
 
-<?= form_hidden('id_diary', $id);?>
+<?= form_hidden('id_diary', $id_diary);?>
 
 <?= form_label('Comment')?>
 <?= form_input('comment', '', 'class="form-control"');?>

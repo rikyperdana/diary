@@ -4,7 +4,7 @@
 		<div class="col-md-8">
 		<!-- Untuk textarea -->
 			<?php echo form_open_multipart('cdiary/isi_diary')?>
-			<?php echo form_hidden('id', $item['id'])?>
+			<?php echo form_hidden('id_diary', $item['id_diary'])?>
 			<?php echo form_label('Isi diary')?><br />
 			<?php
 			$textarea['name'] = 'text';

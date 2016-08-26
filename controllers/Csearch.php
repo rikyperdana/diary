@@ -4,7 +4,7 @@ class Csearch extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if ($this->session->userdata('userlog') == NULL) {redirect('/cuser/login');}
+		if ($this->session->userdata('id_user') == NULL) {redirect('/cuser/login');}
 	}
 
 	function search_diary() {

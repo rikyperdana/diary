@@ -11,7 +11,7 @@
 	$this->table->set_heading('Date', 'Text');
 	foreach ($daftar as $item) :;
 		$text = $this->encryption->decrypt($item['text']);
-		$linkdate = anchor('cdiary/view_diary/'.$item['id'], $item['created'], 'Date');
+		$linkdate = anchor('cdiary/view_diary/'.$item['id_diary'], $item['created'], 'Date');
 		$this->table->add_row($linkdate, $text);
 	endforeach;
 	if (count($daftar) > 0) {

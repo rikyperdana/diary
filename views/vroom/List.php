@@ -13,11 +13,11 @@
 		$this->table->set_heading('Date', 'From', 'Text', 'Mood', 'Love', 'Action');
 		foreach ($daftar as $item) :;
 			$iconbaca = '<span class="glyphicon glyphicon-zoom-in"></span>';
-			$linkbaca = anchor(('cdiary/view_diary/'.$item['id']), $iconbaca, 'Read');
+			$linkbaca = anchor(('cdiary/view_diary/'.$item['id_diary']), $iconbaca, 'Read');
 			$decryptedtext = $this->encryption->decrypt($item['text']);
 			$trimmedtext = character_limiter($decryptedtext, 20);
 			$stranger = $this->encryption->decrypt($item['stranger']);
-			$count_love = $this->mroom->count_love($item['id']);
+			$count_love = $this->mroom->count_love($item['id_diary']);
 			$this->table->add_row($item['created'], $stranger, $trimmedtext, $item['mood'], $count_love, $linkbaca);
 		endforeach;
 		echo $this->table->generate();

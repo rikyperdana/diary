@@ -19,10 +19,10 @@
 		</p>
 		<p>
 			<?php
-				if ($this->mroom->cek_diary_love($diary['id']) == FALSE) {
-					echo anchor(site_url('/croom/add_diary_love/'.$diary['id']), 'Love It', 'class="btn btn-danger"');
+				if ($this->mroom->cek_diary_love($diary['id_diary']) == FALSE) {
+					echo anchor(site_url('/croom/add_diary_love/'.$diary['id_diary']), 'Love It', 'class="btn btn-danger"');
 				} else {
-					echo anchor(site_url('/croom/rmv_diary_love/'.$diary['id']), 'Unlove It', 'class="btn btn-danger"');
+					echo anchor(site_url('/croom/rmv_diary_love/'.$diary['id_diary']), 'Unlove It', 'class="btn btn-danger"');
 				}
 			?>
 		</p>

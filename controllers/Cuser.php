@@ -37,14 +37,10 @@ Class Cuser extends CI_Controller {
 	}
 
 	function user_login() {
-		// tangkap input dari form view
-		$data['username'] = $this->input->post('username');
-		$data['password'] = $this->input->post('password');
-		// kirim array ke model
-		$cek = $this->muser->cek_login($data);
-		// jika model bilang sama, tampilkan sukses, atau kembalikan ke form login
-		if ($cek == TRUE) {
-			$this->session->set_userdata('userlog', $data['username']);
+		$id_user = $this->muser->id_user($this->input->post('username'));
+		$password = $this->input->post('password');
+		if ($this->muser->cek_login($id_user, $password)) {
+			$this->session->set_userdata('id_user', $id_user);
 			redirect('/cdiary/daftar');
 		} else {
 			redirect('/cuser/login');

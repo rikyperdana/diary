@@ -1,1 +1,1 @@
-<p><?php print_r($img);?></p>
+<p><?php echo $this->mdiary->id_user('rikyperdana');?></p>

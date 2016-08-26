@@ -11,13 +11,13 @@
 			echo $this->imagestring->string2image($this->encryption->decrypt($item["img$i"]));
 		}
 
-		echo form_hidden('id', $item['id']);
+		echo form_hidden('id_diary', $item['id_diary']);
 
 		echo form_submit('submit', 'Hapus', 'class="btn btn-danger col-sm-4"');
 		echo form_close();
 		?></div>
 		<div>
-			<?= anchor(site_url('/cdiary/form_edit_diary/'.$item['id']), 'Back to Diary', 'class="btn btn-info col-sm-4 col-sm-offset-1"')?>
+			<?= anchor(site_url('/cdiary/form_edit_diary/'.$item['id_diary']), 'Back to Diary', 'class="btn btn-info col-sm-4 col-sm-offset-1"')?>
 		</div>
 	</div>
 </div>

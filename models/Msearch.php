@@ -4,12 +4,12 @@ class Msearch extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
-		$this->owner = $this->session->userdata('userlog');
+		$this->id_user = $this->session->userdata('id_user');
 	}
 
 	function search_diary($term, $limit, $start) {
 		$this->db->order_by('created', 'DESC');
-		$query = $this->db->get_where('diaries', array('owner' => $this->owner), $limit, $start)->result_array();
+		$query = $this->db->get_where('diaries', array('id_user' => $this->id_user), $limit, $start)->result_array();
 		$result = array();
 		foreach ($query as $row) {
 			$text = $this->encryption->decrypt($row['text']);
